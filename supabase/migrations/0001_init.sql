@@ -13,7 +13,8 @@ create table if not exists private.app_config (
   value text not null
 );
 
-create or replace function public.has_app_secret()
+-- Funktionen ligger i private-skemaet, som ikke er eksponeret i API'et.
+create or replace function private.has_app_secret()
 returns boolean
 language sql
 stable
@@ -26,8 +27,9 @@ as $$
     false
   );
 $$;
-revoke all on function public.has_app_secret() from public;
-grant execute on function public.has_app_secret() to anon, authenticated;
+revoke all on function private.has_app_secret() from public;
+grant usage on schema private to anon;
+grant execute on function private.has_app_secret() to anon;
 
 create table if not exists public.sessions (
   id uuid primary key default gen_random_uuid(),
@@ -78,9 +80,12 @@ alter table public.participants enable row level security;
 alter table public.submissions enable row level security;
 alter table public.questions enable row level security;
 
-create policy "kun appen" on public.sessions for all to anon using (public.has_app_secret()) with check (public.has_app_secret());
-create policy "kun appen" on public.participants for all to anon using (public.has_app_secret()) with check (public.has_app_secret());
-create policy "kun appen" on public.submissions for all to anon using (public.has_app_secret()) with check (public.has_app_secret());
-create policy "kun appen" on public.questions for all to anon using (public.has_app_secret()) with check (public.has_app_secret());
+create policy "kun appen" on public.sessions for all to anon using (private.has_app_secret()) with check (private.has_app_secret());
+create policy "kun appen" on public.participants for all to anon using (private.has_app_secret()) with check (private.has_app_secret());
+create policy "kun appen" on public.submissions for all to anon using (private.has_app_secret()) with check (private.has_app_secret());
+create policy "kun appen" on public.questions for all to anon using (private.has_app_secret()) with check (private.has_app_secret());
 
 grant select, insert, update, delete on public.sessions, public.participants, public.submissions, public.questions to anon;
+
+-- Til sidst sættes hemmeligheden (samme værdi som APP_SECRET i Vercel):
+-- insert into private.app_config (key, value) values ('app_secret', '<APP_SECRET>');
