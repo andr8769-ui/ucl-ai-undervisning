@@ -102,7 +102,7 @@ export default function Presenter({ sessionId, progKey, count, code, host, qrSvg
 
   // preload neighbours
   useEffect(() => {
-    [n + 1, n + 2, n - 1].filter((x) => x >= 1 && x <= count).forEach((x) => { const i = new Image(); i.src = slideUrl(progKey, x); });
+    [n + 1, n + 2, n + 3, n - 1].filter((x) => x >= 1 && x <= count).forEach((x) => { const i = new Image(); i.src = slideUrl(progKey, x); });
   }, [n, count, progKey]);
 
   const click = (e: React.MouseEvent) => {
