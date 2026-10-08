@@ -140,7 +140,7 @@ export default function SessionLive({ session, prog, facit, host, qrSvg }: { ses
 
         {tab === "filer" && (
           <section className="files">
-            <div className="filerow"><div><h3>Præsentationen</h3><div className="muted">PowerPoint med talernoter og facit</div></div><a className="btn small" href={`/api/laerer/fil/${prog.key}`}>Hent .pptx</a></div>
+            <div className="filerow"><div><h3>Præsentationen med talernoter</h3><div className="muted">PowerPoint. Kun til dig</div></div><a className="btn small" href={`/api/laerer/fil/${prog.key}`}>Hent .pptx</a></div>
             <div className="filerow"><div><h3>Undervisningsplan med facit</h3><div className="muted">Kun til dig</div></div><a className="btn ghost small" href="/api/laerer/fil/plan" target="_blank" rel="noreferrer">Åbn PDF</a></div>
             <div className="filerow"><div><h3>Datasæt. {prog.datasetName}</h3><div className="muted">Samme fil som de studerende henter</div></div><a className="btn ghost small" href={`/p/${prog.key}/filer/${prog.datasetFile}`} download>Hent Excel</a></div>
             {STUDENT_FILES.map((f) => (

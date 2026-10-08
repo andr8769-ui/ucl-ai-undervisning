@@ -51,6 +51,7 @@ export const PROGRAMMES: Record<ProgKey, Programme> = {
 export const isProg = (v: string): v is ProgKey => v === "proces" || v === "handel" || v === "service";
 
 export const STUDENT_FILES = [
+  { file: "praesentation.pdf", title: "Præsentationen", desc: "Alle slides fra timen som PDF" },
   { file: "find-fejlen.pdf", title: "Find fejlen", desc: "Teksten til øvelsen som PDF" },
   { file: "promptkort.pdf", title: "Promptkort. Excel i jobbet", desc: "Prompterne til datasættet" },
   { file: "promptbank.pdf", title: "Promptbank til studiet", desc: "Prompts, når du skal lære" },
