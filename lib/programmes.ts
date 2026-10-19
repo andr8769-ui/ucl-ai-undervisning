@@ -20,7 +20,7 @@ export const PROGRAMMES: Record<ProgKey, Programme> = {
     accent: "#3D74FF",
     datasetFile: "Procesteknolog_Fjordtoerreriet_2026.xlsx",
     datasetName: "Fjordtørreriet, sæson 2026",
-    extraFiles: [{ file: "opgave.pdf", title: "Opgave. Massebalancer i Excel", desc: "Byg regnestykket fra Opgave 13 som formler i fanen Opgave" }],
+    extraFiles: [{ file: "opgave.pdf", title: "Opgave. Massebalancer med ChatGPT i Excel", desc: "De tre spørgsmål fra Opgave 13 som formler i fanen Opgave" }],
     fejl: {
       emne: "Pasteurisering",
       tekst:
