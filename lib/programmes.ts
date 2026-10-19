@@ -7,7 +7,11 @@ export type Programme = {
   datasetFile: string;
   datasetName: string;
   fejl: { emne: string; tekst: string };
+  /** Ekstra materiale, der kun findes for den enkelte uddannelse. */
+  extraFiles?: StudentFile[];
 };
+
+export type StudentFile = { file: string; title: string; desc: string };
 
 export const PROGRAMMES: Record<ProgKey, Programme> = {
   proces: {
@@ -16,6 +20,7 @@ export const PROGRAMMES: Record<ProgKey, Programme> = {
     accent: "#3D74FF",
     datasetFile: "Procesteknolog_Fjordtoerreriet_2026.xlsx",
     datasetName: "Fjordtørreriet, sæson 2026",
+    extraFiles: [{ file: "opgave.pdf", title: "Opgave. Massebalancer i Excel", desc: "Byg regnestykket fra Opgave 13 som formler i fanen Opgave" }],
     fejl: {
       emne: "Pasteurisering",
       tekst:
@@ -50,9 +55,12 @@ export const PROGRAMMES: Record<ProgKey, Programme> = {
 
 export const isProg = (v: string): v is ProgKey => v === "proces" || v === "handel" || v === "service";
 
-export const STUDENT_FILES = [
+export const STUDENT_FILES: StudentFile[] = [
   { file: "praesentation.pdf", title: "Præsentationen", desc: "Alle slides fra timen som PDF" },
   { file: "find-fejlen.pdf", title: "Find fejlen", desc: "Teksten til øvelsen som PDF" },
   { file: "promptkort.pdf", title: "Promptkort. Excel i jobbet", desc: "Prompterne til datasættet" },
   { file: "promptbank.pdf", title: "Promptbank til studiet", desc: "Prompts, når du skal lære" },
 ];
+
+/** Fælles materiale plus det, der kun hører til uddannelsen. Opgaven står først. */
+export const studentFiles = (prog: Programme): StudentFile[] => [...(prog.extraFiles ?? []), ...STUDENT_FILES];

@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import type { Programme } from "@/lib/programmes";
-import { STUDENT_FILES } from "@/lib/programmes";
+import { studentFiles } from "@/lib/programmes";
 import FindFejlen from "./FindFejlen";
 import DatasetViewer from "./DatasetViewer";
 import AskWidget from "./AskWidget";
@@ -53,7 +53,7 @@ export default function StudentApp({ prog, username, className, date, open }: { 
                 <div><h3>Datasæt. {prog.datasetName}</h3><div className="muted">Excel-filen til hands-on. Upload den til Claude, ChatGPT eller Copilot.</div></div>
                 <a className="btn small" href={`/p/${prog.key}/filer/${prog.datasetFile}`} download>Hent Excel</a>
               </div>
-              {STUDENT_FILES.map((f) => (
+              {studentFiles(prog).map((f) => (
                 <div className="filerow" key={f.file}>
                   <div><h3>{f.title}</h3><div className="muted">{f.desc}</div></div>
                   <a className="btn ghost small" href={`/p/${prog.key}/filer/${f.file}`} target="_blank" rel="noreferrer">Åbn PDF</a>

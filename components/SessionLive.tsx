@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import type { SessionRow } from "@/lib/db";
 import type { Programme } from "@/lib/programmes";
-import { STUDENT_FILES } from "@/lib/programmes";
+import { studentFiles } from "@/lib/programmes";
 
 type Participant = { id: string; username: string; created_at: string };
 type Submission = { participant_id: string; answers: Record<string, string>; submitted_at: string | null; updated_at: string };
@@ -143,7 +143,7 @@ export default function SessionLive({ session, prog, facit, host, qrSvg }: { ses
             <div className="filerow"><div><h3>Præsentationen med talernoter</h3><div className="muted">PowerPoint. Kun til dig</div></div><a className="btn small" href={`/api/laerer/fil/${prog.key}`}>Hent .pptx</a></div>
             <div className="filerow"><div><h3>Undervisningsplan med facit</h3><div className="muted">Kun til dig</div></div><a className="btn ghost small" href="/api/laerer/fil/plan" target="_blank" rel="noreferrer">Åbn PDF</a></div>
             <div className="filerow"><div><h3>Datasæt. {prog.datasetName}</h3><div className="muted">Samme fil som de studerende henter</div></div><a className="btn ghost small" href={`/p/${prog.key}/filer/${prog.datasetFile}`} download>Hent Excel</a></div>
-            {STUDENT_FILES.map((f) => (
+            {studentFiles(prog).map((f) => (
               <div className="filerow" key={f.file}><div><h3>{f.title}</h3><div className="muted">Til de studerende</div></div><a className="btn ghost small" href={`/p/${prog.key}/filer/${f.file}`} target="_blank" rel="noreferrer">Åbn PDF</a></div>
             ))}
             <div style={{ marginTop: 40 }}><button className="btn danger small" onClick={remove}>Slet session</button></div>
