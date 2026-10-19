@@ -7,11 +7,18 @@ export type Programme = {
   datasetFile: string;
   datasetName: string;
   fejl: { emne: string; tekst: string };
-  /** Ekstra materiale, der kun findes for den enkelte uddannelse. */
-  extraFiles?: StudentFile[];
+  /** Materiale til de studerende, i den rækkefølge det vises. */
+  files: StudentFile[];
 };
 
 export type StudentFile = { file: string; title: string; desc: string };
+
+const JOB_FILES: StudentFile[] = [
+  { file: "praesentation.pdf", title: "Præsentationen", desc: "Alle slides fra timen som PDF" },
+  { file: "find-fejlen.pdf", title: "Find fejlen", desc: "Teksten til øvelsen som PDF" },
+  { file: "promptkort.pdf", title: "Promptkort. Excel i jobbet", desc: "Prompterne til datasættet" },
+  { file: "promptbank.pdf", title: "Promptbank til studiet", desc: "Prompts, når du skal lære" },
+];
 
 export const PROGRAMMES: Record<ProgKey, Programme> = {
   proces: {
@@ -20,7 +27,12 @@ export const PROGRAMMES: Record<ProgKey, Programme> = {
     accent: "#3D74FF",
     datasetFile: "Procesteknolog_Fjordtoerreriet_2026.xlsx",
     datasetName: "Fjordtørreriet, sæson 2026",
-    extraFiles: [{ file: "opgave.pdf", title: "Opgave. Massebalancer med ChatGPT i Excel", desc: "De tre spørgsmål fra Opgave 13 som formler i fanen Opgave" }],
+    files: [
+      { file: "praesentation.pdf", title: "Præsentationen", desc: "Alle slides fra timen som PDF" },
+      { file: "chatgpt-i-excel.pdf", title: "ChatGPT i Excel. Overblik og opgaver", desc: "Tre prompts til overblik og tre opgaver, hvor ChatGPT sparrer" },
+      { file: "find-fejlen.pdf", title: "Find fejlen", desc: "Teksten til øvelsen som PDF" },
+      { file: "promptbank.pdf", title: "Promptbank til studiet", desc: "Prompts, når du skal lære" },
+    ],
     fejl: {
       emne: "Pasteurisering",
       tekst:
@@ -33,6 +45,7 @@ export const PROGRAMMES: Record<ProgKey, Programme> = {
     accent: "#EE4B1A",
     datasetFile: "Handelsokonom_FjordOutdoor.xlsx",
     datasetName: "Fjord Outdoor",
+    files: JOB_FILES,
     fejl: {
       emne: "Kundeloyalitet",
       tekst:
@@ -45,6 +58,7 @@ export const PROGRAMMES: Record<ProgKey, Programme> = {
     accent: "#009A92",
     datasetFile: "Serviceokonom_HotelFjordlys.xlsx",
     datasetName: "Hotel Fjordlys",
+    files: JOB_FILES,
     fejl: {
       emne: "Oplevelsesøkonomi",
       tekst:
@@ -55,12 +69,4 @@ export const PROGRAMMES: Record<ProgKey, Programme> = {
 
 export const isProg = (v: string): v is ProgKey => v === "proces" || v === "handel" || v === "service";
 
-export const STUDENT_FILES: StudentFile[] = [
-  { file: "praesentation.pdf", title: "Præsentationen", desc: "Alle slides fra timen som PDF" },
-  { file: "find-fejlen.pdf", title: "Find fejlen", desc: "Teksten til øvelsen som PDF" },
-  { file: "promptkort.pdf", title: "Promptkort. Excel i jobbet", desc: "Prompterne til datasættet" },
-  { file: "promptbank.pdf", title: "Promptbank til studiet", desc: "Prompts, når du skal lære" },
-];
-
-/** Fælles materiale plus det, der kun hører til uddannelsen. Opgaven står først. */
-export const studentFiles = (prog: Programme): StudentFile[] => [...(prog.extraFiles ?? []), ...STUDENT_FILES];
+export const studentFiles = (prog: Programme): StudentFile[] => prog.files;
