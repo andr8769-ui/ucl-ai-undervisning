@@ -14,8 +14,8 @@ export const PROGRAMMES: Record<ProgKey, Programme> = {
     key: "proces",
     name: "Procesteknolog",
     accent: "#3D74FF",
-    datasetFile: "Procesteknolog_Fjordmejeriet_uge41.xlsx",
-    datasetName: "Fjordmejeriet, uge 41",
+    datasetFile: "Procesteknolog_Fjordtoerreriet_2026.xlsx",
+    datasetName: "Fjordtørreriet, sæson 2026",
     fejl: {
       emne: "Pasteurisering",
       tekst:

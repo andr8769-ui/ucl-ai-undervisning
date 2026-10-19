@@ -8,7 +8,7 @@ const PAGE = 100;
 const fmt = (v: string | number | null, col = "") => {
   if (v === null || v === undefined) return "";
   if (typeof v === "number") {
-    if (/rabat/i.test(col)) return (v * 100).toLocaleString("da-DK", { maximumFractionDigits: 1 }) + " %";
+    if (/rabat|vandindhold|luftfugtighed/i.test(col)) return (v * 100).toLocaleString("da-DK", { maximumFractionDigits: 1 }) + " %";
     return v.toLocaleString("da-DK", { maximumFractionDigits: 3 });
   }
   return v;

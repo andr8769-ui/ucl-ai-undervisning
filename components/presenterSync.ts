@@ -12,7 +12,7 @@ export type Overlay = "none" | "code" | "questions";
 export type Question = { id: string; username: string; body: string; status: "new" | "shown" | "done"; created_at: string };
 
 // Hæv versionen, når slides gengives på ny, så browserens cache ikke viser de gamle.
-const SLIDE_VERSION = "4k";
+const SLIDE_VERSION = "toerring-1";
 export const slideUrl = (prog: string, n: number) => `/api/laerer/slide/${prog}/${n}?v=${SLIDE_VERSION}`;
 export const storeKey = (sessionId: string) => `slide-${sessionId}`;
 
