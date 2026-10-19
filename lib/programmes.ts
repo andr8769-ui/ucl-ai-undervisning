@@ -13,11 +13,12 @@ export type Programme = {
 
 export type StudentFile = { file: string; title: string; desc: string };
 
+// Bilagsbogstaverne følger undervisningsplanen. A Find fejlen, B Promptbank, C arket til Excel-delen.
 const JOB_FILES: StudentFile[] = [
   { file: "praesentation.pdf", title: "Præsentationen", desc: "Alle slides fra timen som PDF" },
-  { file: "find-fejlen.pdf", title: "Find fejlen", desc: "Teksten til øvelsen som PDF" },
-  { file: "promptkort.pdf", title: "Promptkort. Excel i jobbet", desc: "Prompterne til datasættet" },
-  { file: "promptbank.pdf", title: "Promptbank til studiet", desc: "Prompts, når du skal lære" },
+  { file: "find-fejlen.pdf", title: "Bilag A. Find fejlen", desc: "Teksten til øvelsen som PDF" },
+  { file: "promptbank.pdf", title: "Bilag B. Promptbank til studiet", desc: "Prompts, når du skal lære" },
+  { file: "promptkort.pdf", title: "Bilag C. Promptkort. Excel i jobbet", desc: "Prompterne til datasættet" },
 ];
 
 export const PROGRAMMES: Record<ProgKey, Programme> = {
@@ -29,9 +30,9 @@ export const PROGRAMMES: Record<ProgKey, Programme> = {
     datasetName: "Fjordtørreriet, sæson 2026",
     files: [
       { file: "praesentation.pdf", title: "Præsentationen", desc: "Alle slides fra timen som PDF" },
-      { file: "chatgpt-i-excel.pdf", title: "ChatGPT i Excel. Overblik og opgaver", desc: "Tre prompts til overblik og tre opgaver, hvor ChatGPT sparrer" },
-      { file: "find-fejlen.pdf", title: "Find fejlen", desc: "Teksten til øvelsen som PDF" },
-      { file: "promptbank.pdf", title: "Promptbank til studiet", desc: "Prompts, når du skal lære" },
+      { file: "find-fejlen.pdf", title: "Bilag A. Find fejlen", desc: "Teksten til øvelsen som PDF" },
+      { file: "promptbank.pdf", title: "Bilag B. Promptbank til studiet", desc: "Prompts, når du skal lære" },
+      { file: "chatgpt-i-excel.pdf", title: "Bilag C. ChatGPT i Excel. Overblik og opgaver", desc: "Tre prompts til overblik og tre opgaver, hvor ChatGPT sparrer" },
     ],
     fejl: {
       emne: "Pasteurisering",
